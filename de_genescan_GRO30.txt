@@ -1,0 +1,9 @@
+files	samples	treatment
+/scratch/Users/lysa8537/gerber_snp_analysis/bams/B2B30GROseq-E.sorted.bam	B2B30GROseq-E	vehicle
+/scratch/Users/lysa8537/gerber_snp_analysis/bams/B2B30GROseq-E2.sorted.bam	B2B30GROseq-E2	vehicle
+/scratch/Users/lysa8537/gerber_snp_analysis/bams/B2B30GROseq-D.sorted.bam	B2B30GROseq-D   dex
+/scratch/Users/lysa8537/gerber_snp_analysis/bams/B2B30GROseq-D2.sorted.bam	B2B30GROseq-D2  dex
+/scratch/Users/lysa8537/gerber_snp_analysis/bams/B2B30GROseq-TE.sorted.bam	B2B30GROseq-TE  TNF
+/scratch/Users/lysa8537/gerber_snp_analysis/bams/B2B30GROseq-TE2.sorted.bam	B2B30GROseq-TE2 TNF
+/scratch/Users/lysa8537/gerber_snp_analysis/bams/B2B30GROseq-TD.sorted.bam	B2B30GROseq-TD	TNF_dex
+/scratch/Users/lysa8537/gerber_snp_analysis/bams/B2B30GROseq-TD2.sorted.bam	B2B30GROseq-TD2	TNF_dex
