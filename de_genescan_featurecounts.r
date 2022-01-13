@@ -1,5 +1,7 @@
 library("Rsubread")
 
+### Usage: de_genescan_featurecounts.r path_to_config path_to_gtf outfile_name
+
 # Load in config file with files for processing
 args <- commandArgs(trailingOnly=TRUE)
 gtf <- args[2]
