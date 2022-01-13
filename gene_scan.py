@@ -364,6 +364,27 @@ def write_bedfile(out_bedfile, region_list, columns=4):
                         + "\n"
                     )
                 )
+            elif int(columns) == 8:
+                output.write(
+                    str(
+                        str(region[0])
+                        + "\t"
+                        + str(region[1])
+                        + "\t"
+                        + str(region[2])
+                        + "\t"
+                        + str(region[3])
+                        + "\t"
+                        + str(region[4])
+                        + "\t"
+                        + str(region[5])
+                        + "\t"
+                        + str(region[6])
+                        + "\t"
+                        + str(region[7])
+                        + "\n"
+                    )
+                )
             elif int(columns) == 12:
                 output.write(
                     str(
@@ -403,7 +424,8 @@ def write_bedfile(out_bedfile, region_list, columns=4):
 
 def main(
     tfit, chrom, sample_name, output_dir, gtf, deseq_results, 
-    tss_window=1000, scan_window=1000000, significance=True, thresh=0.05,
+    tss_window=1000, scan_window=1000000, significance=True, 
+    thresh=0.05, diffex=True,
 ):
     """Process input prelim files"""
 
@@ -436,6 +458,16 @@ def main(
     # 6 : read in intersect file and filter for unique genes
     raw_intersect = read_bedfile(intersect_file)
     filtered_intersect = unique_genes(raw_intersect)
+
+    # 6a : if no DE info wanted, write out intersect file and return
+    if not diffex:
+        outfile = base_name + "_gene_scan_" + str(scan_window) + "_nodiffex.txt"
+        write_bedfile(
+            "{}/{}".format(output_dir, outfile),
+            deseq_intersect,
+            8,
+        )
+        return        
 
     # 7 : add deseq2 info
     deseq_intersect = deseq_add(deseq_results, filtered_intersect, 
@@ -535,7 +567,21 @@ parser.add_argument(
     help="Report all genes, regardless of difference",
 )
 
-parser.set_defaults(significance=True)
+parser.add_argument(
+    "--diffex",
+    dest="diffex",
+    action="store_true",
+    help="Add differential expression info (default=True)",
+)
+
+parser.add_argument(
+    "--no-diffex",
+    dest="diffex",
+    action="store_false",
+    help="Report all genes with no DESeq2 information",
+)
+
+parser.set_defaults(significance=True, diffex=True)
 
 args = parser.parse_args()
 
@@ -550,4 +596,5 @@ main(
     args.scan_window,
     args.significance,
     args.thresh,
+    args.diffex,
 )
